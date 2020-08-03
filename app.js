@@ -75,7 +75,20 @@ index.setSettings({
     console.log('sent custom ranking!');
   });
 
-// Search for an airport
+// Promote Ohare and Capital when query contains test
+
+index.saveRule({
+    objectID: "promoteOhareAndCapital",
+    condition: {pattern: "test", anchoring: "contains"},
+    consequence: {
+        promote: [
+            { objectID: "3830", position: 0 },
+            { objectID: "3364", position: 1 }
+        ]
+    }
+});
+
+// Search for Hartsfield Jackson Atlanta Intl airport
 
 index
     .search('Hartsfield Jackson Atlanta Intl')
@@ -85,7 +98,7 @@ index
       console.log(err)
   });
   
-// Search for an airport with typo
+// Search for Hartsfield Jackson Atlanta Intl airport with typo
 
 index
     .search('heartsfield')
